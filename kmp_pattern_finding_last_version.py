@@ -13,6 +13,8 @@ import copy
 import signal
 import time
 import timeout_decorator
+import gc
+import resource
 from concurrent.futures import TimeoutError
 
 def make_random_path(nbr_vertices,length):
@@ -191,7 +193,7 @@ def file_to_paths(file):
             edges = test_list
             graphs.append(edges)
         a = data[0]
-    print(graphs)
+    #print(graphs)
     return graphs
 
 #print(file_to_graphs("/home/fatemeh/Bureau/Stage/example_pattern3.txt"))
@@ -448,15 +450,15 @@ def KMPSearch(E, Eprim,testing_gprim):
             all_mappings = [mapping]
             print("all_mappings" + str(all_mappings))
         if(i>0):
-            print("voici i " + str(i))
-            print("voici j " + str(j))
+            #print("voici i " + str(i))
+            #print("voici j " + str(j))
            # all_mappings_bef = copy.deepcopy(all_mappings)
             all_mappings.append(mapping)
             all_mappings = list(itertools.product(*all_mappings))
             all_mappings = clean_mappings(all_mappings)
-            if (i>=141):
-                print("MAPPING" + str(mapping))
-                print("all_mappings" + str(all_mappings))
+            #if (i>=141):
+                #print("MAPPING" + str(mapping))
+                #print("all_mappings" + str(all_mappings))
             #print("all_mappings 2" + str(all_mappings))
         if (all_mappings!=[[]]):
             #print("il y a des isomorphismes restantes")
@@ -534,6 +536,8 @@ def test_defined_pattern_defiend_target(tpath,ppath,target, pattern, number_of_t
     print("temps moyenne " + str(somme/number_of_try))
     return (somme/number_of_try,r)
 
+    
+
 '''
 def test_list_of_defined_pattern_defiend_target(list_target,list_pattern,n_o_t,f):
     fi = open(f,"a")
@@ -576,7 +580,7 @@ def doStuff(i,alltests,target,pattern,n_o_t):
          '''
  
 
-def run_tests(d1, d2,results,n_o_t):
+def run_tests(d1, d2,results,n_o_t,fold,all_fold):
     patterns = []
     targets = []
     for filename in os.listdir(d1):
@@ -592,21 +596,29 @@ def run_tests(d1, d2,results,n_o_t):
         for pattern in patterns:
             try:
                 i = i + 1
-                print("test " + str(i) + "/" + str(alltests) + ":" + target + "    " + pattern)
+                #print("test " + str(i) + "/" + str(alltests) + ":" + target + "    " + pattern)
+                #print("folder" + str(fold) + "/" + str(all_fold))
+                print "test {} / {} : {}    {}".format(i,alltests,target,pattern)
+                print "folder {} / {}".format(fold,all_fold)
                 (t,r) = test_defined_pattern_defiend_target(d2,d1,target,pattern,n_o_t)
                 print(r)
             except Exception as e:
                 #print("ALERTE OUT OF TIME")
                 print(e)
-                fi.write(target + " " + pattern + " OUT OF TIME " + "\n")            
+                fi.write("target {} {} OUT OF TIME \n".format(target,pattern))
+                #fi.write(target + " " + pattern + " OUT OF TIME " + "\n")            
             else:
                 if (r == []):
                     res = "no"
-                    fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + "\n")
+                    fi.write("target {} {} {} {} \n".format(target,pattern,t,res))
+                    #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + "\n")
                 else:
                     res = "yes"
                     (instant,mapi) = r[0]
-                    fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + str(instant) + "\n")
+                    fi.write("target {} {} {} {} {} \n".format(target,pattern,t,res,instant))
+                    #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + str(instant) + "\n")
+        gc.collect()
+
             
                 
             
@@ -632,14 +644,32 @@ def run_tests_on_folders(paths_folders,targtes_folders):
         i = i + 1
         r = "/home/fatemeh/Bureau/Stage/results/T"+str(i)
         for path_folder in subfolders_paths:
-            run_tests(path_folder,targtes_folder,r,1)
+            run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     
-run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
+#run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
+
+def main():
+    run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
+
+
 #test_defined_pattern_random_target(100, 15, "example_pattern2.txt" ,1)
 
 #def test_random_pattern_random_target(T_G, V_G, T_P, V_P,number_of_try):
 
+if __name__ == "__main__":
+    try:
+        main()
+        mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        print "Memory usage is: {0} KB".format(mem)
 
+
+    except IOError as (errno, strerror):
+        print "I/O error({0}): {1}".format(errno, strerror)
+    except ValueError:
+        print "Could not convert data to an integer."
+    except:
+        print "Unexpected error:", sys.exc_info()[0]
+    
 
 '''
 somme = 1

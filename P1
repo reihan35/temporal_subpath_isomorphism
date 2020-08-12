@@ -1,0 +1,33 @@
+target_100inst_30vert pattern_6_inst_5_vert_diff 19.0063610077 no 
+target_100inst_15vert pattern_6_inst_5_vert_diff 6.78403806686 no 
+target_100inst_50vert pattern_6_inst_5_vert_diff 5.49465298653 yes 4
+target_100inst_100vert pattern_6_inst_5_vert_diff 17.6219389439 yes 4
+target_100inst_30vert pattern_6_inst_5_vert_repeat 9.02955389023 yes 0
+target_100inst_15vert pattern_6_inst_5_vert_repeat 16.1803898811 yes 48
+target_100inst_50vert pattern_6_inst_5_vert_repeat 194.803828955 yes 21
+target_100inst_100vert pattern_6_inst_5_vert_repeat 641.395747185 yes 9
+target_100inst_30vert pattern_6_inst_5_vert_some_r 300.671094894 yes 64
+target_100inst_15vert pattern_6_inst_5_vert_some_r 43.5312798023 not
+target_100inst_50vert pattern_6_inst_5_vert_some_r 952.924525976 yes 25
+target_100inst_100vert pattern_6_inst_5_vert_some_r out of time
+target_1000inst_100vert pattern_6_inst_5_vert_diff 81.5156350136 yes 56
+target_1000inst_50vert pattern_6_inst_5_vert_diff 6.39369010925 yes 16
+target_1000inst_30vert pattern_6_inst_5_vert_diff 20.332118988 yes 175
+target_1000inst_15vert pattern_6_inst_5_vert_diff 7.39481782913 yes 178
+target_1000inst_100vert pattern_6_inst_5_vert_repeat 483.543713093 yes 0
+target_1000inst_50vert pattern_6_inst_5_vert_repeat 840.887121916 yes 81
+target_1000inst_30vert pattern_6_inst_5_vert_repeat 20.565073967 yes 6
+target_1000inst_15vert pattern_6_inst_5_vert_repeat 4.22930598259 yes 12
+target_1000inst_15vert pattern_6_inst_5_vert_some_r 152.661879063 yes 330
+target_1000inst_30vert pattern_6_inst_5_vert_some_r 250.386637926 yes 33
+target_1000inst_50vert pattern_6_inst_5_vert_some_r 183.328086138 yes 0
+target_5000inst_15vert pattern_6_inst_5_vert_some_r 241.811738014 yes 599
+target_5000inst_30vert pattern_6_inst_5_vert_some_r 160.215521097 yes 23
+target_5000inst_50vert pattern_6_inst_5_vert_some_r 327.641760826 yes 5
+target_5000inst_30vert pattern_6_inst_5_vert_diff 4.38133788109 yes 33
+target_5000inst_15vert pattern_6_inst_5_vert_diff 10.2696650028 yes 370
+target_5000inst_50vert pattern_6_inst_5_vert_diff 29.9534740448 yes 92
+target_5000inst_100vert pattern_6_inst_5_vert_diff 3.65659594536 yes 0
+target_5000inst_30vert pattern_6_inst_5_vert_repeat 81.0651469231 yes 23
+target_5000inst_15vert pattern_6_inst_5_vert_repeat 4.66706299782 yes 12
+target_5000inst_50vert pattern_6_inst_5_vert_repeat 670.642745972 yes 39

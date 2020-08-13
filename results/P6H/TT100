@@ -1,0 +1,6 @@
+target target_100inst_30vert pattern_6_inst_5_vert_some_r OUT OF TIME 
+target target_100inst_30vert pattern_6_inst_5_vert_repeat OUT OF TIME 
+target target_100inst_30vert pattern_6_inst_5_vert_diff OUT OF TIME 
+target target_100inst_15vert pattern_6_inst_5_vert_some_r 40.8052461147 yes 1 
+target target_100inst_15vert pattern_6_inst_5_vert_repeat 32.1598939896 yes 1 
+target target_100inst_15vert pattern_6_inst_5_vert_diff 79.7011270523 yes 1 

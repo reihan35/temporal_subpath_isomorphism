@@ -520,7 +520,7 @@ def test_defined_pattern_random_target(T_G, V_G, E_P,number_of_try):
     print("temps moyenne " + str(somme/number_of_try))
     return (somme/number_of_try)
 
-@timeout_decorator.timeout(300,timeout_exception=OSError) 
+@timeout_decorator.timeout(400,timeout_exception=OSError) 
 def test_defined_pattern_defiend_target(tpath,ppath,target, pattern, number_of_try):
     somme = 0
     for i in range(number_of_try):
@@ -642,7 +642,7 @@ def run_tests_on_folders(paths_folders,targtes_folders):
     i = 0
     for targtes_folder in subfolders_targets:
         i = i + 1
-        r = "/home/fatemeh/Bureau/Stage/results/T"+str(i)
+        r = "/home/fatemeh/Bureau/Stage/results/T"+ targtes_folder[35:]
         for path_folder in subfolders_paths:
             run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     

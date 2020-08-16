@@ -1,3 +1,5 @@
+import timeit
+
 def computeLPSArray(pat, M, lps): 
     len = 0 # length of the previous longest prefix suffix 
   
@@ -22,9 +24,15 @@ def computeLPSArray(pat, M, lps):
                 lps[i] = 0
                 i += 1
 
-pat = "abcabcabcabc"
+pat = "abab"
 M = len(pat) 
 lps = [0]*M 
 computeLPSArray(pat, M, lps)
 print(lps)
+t = []
+start2 = timeit.default_timer()
+t.append(2)
+stop2 = timeit.default_timer()
+somme = (stop2 - start2)
+print(somme)
 

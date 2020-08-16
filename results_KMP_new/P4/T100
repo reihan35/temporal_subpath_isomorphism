@@ -1,0 +1,12 @@
+target target_100inst_30vert pattern_4_inst_5_vert_diff 2.80291986465 yes 25 
+target target_100inst_30vert pattern_4_inst_5_vert_some_r 5.39508199692 yes 1 
+target target_100inst_30vert pattern_4_inst_5_vert_repeat 5.93903112411 yes 1 
+target target_100inst_15vert pattern_4_inst_5_vert_diff 1.34475803375 yes 44 
+target target_100inst_15vert pattern_4_inst_5_vert_some_r 0.721460819244 yes 1 
+target target_100inst_15vert pattern_4_inst_5_vert_repeat 0.88943696022 yes 1 
+target target_100inst_50vert pattern_4_inst_5_vert_diff 1.64978790283 yes 4 
+target target_100inst_50vert pattern_4_inst_5_vert_some_r 33.9027609825 yes 1 
+target target_100inst_50vert pattern_4_inst_5_vert_repeat 36.5101339817 yes 1 
+target target_100inst_100vert pattern_4_inst_5_vert_diff 2.07494688034 yes 1 
+target target_100inst_100vert pattern_4_inst_5_vert_some_r 227.890117168 yes 1 
+target target_100inst_100vert pattern_4_inst_5_vert_repeat 219.163822889 yes 1 

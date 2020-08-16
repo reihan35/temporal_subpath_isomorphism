@@ -416,7 +416,7 @@ def is_valid(mapping):
 def clean_mappings(mappings):
     new_mappings = []
     for mapping in mappings:
-        print(mapping)
+        #print(mapping)
         m = is_valid(mapping)
         #print(m)
         if m != -1:
@@ -501,21 +501,29 @@ def KMPSearch(E, Eprim,testing_gprim):
         #print("voici j " + str(j))
         mapping = creat_all_mappings_for_single_graph(Eprim[i],E[j],testing_gprim[i])
         #print("voici mapping" + str(mapping))
-        if (i==0):
+        if (i==0 or all_mappings==[]):
            # print("voici i " + str(i))
             all_mappings = [mapping]
-            print("all_mappings" + str(all_mappings))
+            #print("all_mappings" + str(all_mappings))
         if(i>0):
-            print("voici i " + str(i))
-            print("voici j " + str(j))
-            all_mappings.append(mapping)
-            print("all_mappings apres append" + str(all_mappings))
+            #print("voici i " + str(i))
+            #print("voici j " + str(j))
+           # all_mappings_bef = copy.deepcopy(all_mappings)
+            #all_mappings.append(mapping)
             #all_mappings = cartesian(tuple(all_mappings))
-            all_mappings = list(itertools.product(*all_mappings))
-            print("all_mappings apres cartesian" + str(all_mappings))
-            all_mappings = clean_mappings(all_mappings)
-            print("all_mappings apres clean" + str(all_mappings))
-
+            #all_mappings = list(itertools.product(*all_mappings))
+            cleaned = []
+            #print("mappings" + str(mapping))
+            #print("all_mappings avant clean" + str(all_mappings))
+            for m in mapping:
+                for m2 in all_mappings[0]:
+                    #print((m,m2))
+                    merged = is_valid((m,m2))
+                    if merged !=-1:
+                        cleaned.append(merged)
+            all_mappings = [cleaned]
+            #print("all_mappings apres clean" + str(all_mappings))
+            #all_mappings = clean_mappings(all_mappings)
             #if (i>=141):
                 #print("MAPPING" + str(mapping))
                 #print("all_mappings" + str(all_mappings))
@@ -580,7 +588,7 @@ def test_defined_pattern_random_target(T_G, V_G, E_P,number_of_try):
     print("temps moyenne " + str(somme/number_of_try))
     return (somme/number_of_try)
 
-@timeout_decorator.timeout(400,timeout_exception=OSError) 
+@timeout_decorator.timeout(300,timeout_exception=OSError) 
 def test_defined_pattern_defiend_target(tpath,ppath,target, pattern, number_of_try):
     somme = 0
     for i in range(number_of_try):
@@ -702,14 +710,14 @@ def run_tests_on_folders(paths_folders,targtes_folders):
     i = 0
     for targtes_folder in subfolders_targets:
         i = i + 1
-        r = "/home/fatemeh/Bureau/Stage/results_KMP/T"+ targtes_folder[39:]
+        r = "/home/fatemeh/Bureau/Stage/results_KMP_new/"+ targtes_folder[40:]
         for path_folder in subfolders_paths:
             run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     
 #run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
 
 def main():
-    run_tests_on_folders("/home/fatemeh/Bureau/Stage/patternsKMP/","/home/fatemeh/Bureau/Stage/targetsKMP/")
+    run_tests_on_folders("/home/fatemeh/Bureau/Stage/patternsKMPnew/","/home/fatemeh/Bureau/Stage/targetsKMPnew/")
 
 
 #test_defined_pattern_random_target(100, 15, "example_pattern2.txt" ,1)
@@ -718,7 +726,7 @@ def main():
 
 if __name__ == "__main__":
     #try:
-       # main()
+        main()
         mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         print "Memory usage is: {0} KB".format(mem)
 
@@ -747,17 +755,17 @@ for i in range(n):
 print("temps moyenne " + str(somme/n))
 '''
 
-
-(tomatrix, testing_grpim,maxi) = file_to_graphs_present_vertices("/home/fatemeh/Bureau/Stage/algo_naive/example_target2")
+'''
+(tomatrix, testing_grpim,maxi) = file_to_graphs_present_vertices("/home/fatemeh/Bureau/Stage/algo_naive/example_target3")
 print(tomatrix)
 print(testing_grpim)
 print("MAXI" + str(maxi))
 example_target_1 = to_list_of_matrices(tomatrix,maxi)
 
-example_pattern_1 = file_to_paths("/home/fatemeh/Bureau/Stage/algo_naive/example_pattern3")
+example_pattern_1 = file_to_paths("/home/fatemeh/Bureau/Stage/algo_naive/example_pattern1")
 
 print(KMPSearch(example_pattern_1, example_target_1,testing_grpim))
-
+'''
 '''
 example_target_2 = to_list_of_matrices(file_to_graphs("/home/fatemeh/Bureau/Stage/example_target2.txt"),4)
 #example_pattern_2 = to_list_of_matrices(file_to_graphs("/home/fatemeh/Bureau/Stage/example_pattern2.txt"),4)

@@ -477,6 +477,7 @@ def computeLPSArray(E, T, lps):
 
 
 def KMPSearch(E, Eprim,testing_gprim): 
+    #print("PATTTTTERRRNS" + str(E))
     M = len(E) 
     N = len(Eprim) 
     result = []
@@ -514,7 +515,9 @@ def KMPSearch(E, Eprim,testing_gprim):
             #all_mappings = list(itertools.product(*all_mappings))
             cleaned = []
             #print("mappings" + str(mapping))
-            #print("all_mappings avant clean" + str(all_mappings))
+            #if (i==24):
+                #print("all_mappings avant clean" + str(all_mappings))
+                #print(mapping)
             for m in mapping:
                 for m2 in all_mappings[0]:
                     #print((m,m2))
@@ -554,12 +557,14 @@ def KMPSearch(E, Eprim,testing_gprim):
             # they will match anyway 
             if j != 0: 
                 #print("Mismatch 1 : il y a PAS d'isomorphisme")
+                j2 = j
                 j = lps[j - 1]
                 #all_mappings = copy.deepcopy(all_mappings_bef)
                 if (j>0):
                     all_mappings = copy.deepcopy(copies.get(j))
-                else: 
+                else:
                     all_mappings = []
+                    #i = i - j2
                     #all_mappings_bef = []
                 #copies = dict()
             else: 
@@ -584,7 +589,6 @@ def test_defined_pattern_random_target(T_G, V_G, E_P,number_of_try):
         stop = timeit.default_timer()
         somme = somme + (stop - start)
         print('Time: ', stop - start)
-
     print("temps moyenne " + str(somme/number_of_try))
     return (somme/number_of_try)
 
@@ -710,14 +714,14 @@ def run_tests_on_folders(paths_folders,targtes_folders):
     i = 0
     for targtes_folder in subfolders_targets:
         i = i + 1
-        r = "/home/fatemeh/Bureau/Stage/results_KMP_new/"+ targtes_folder[40:]
+        r = "/home/fatemeh/Bureau/Stage/RES/results_KMP_new/T"+ targtes_folder[45:]
         for path_folder in subfolders_paths:
             run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     
 #run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
 
 def main():
-    run_tests_on_folders("/home/fatemeh/Bureau/Stage/patternsKMPnew/","/home/fatemeh/Bureau/Stage/targetsKMPnew/")
+    run_tests_on_folders("/home/fatemeh/Bureau/Stage/KMP/patternsKMPnew/","/home/fatemeh/Bureau/Stage/KMP/targetsKMPnew/")
 
 
 #test_defined_pattern_random_target(100, 15, "example_pattern2.txt" ,1)

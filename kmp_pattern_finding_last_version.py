@@ -702,14 +702,14 @@ def run_tests_on_folders(paths_folders,targtes_folders):
     i = 0
     for targtes_folder in subfolders_targets:
         i = i + 1
-        r = "/home/fatemeh/Bureau/Stage/results_KMP/T"+ targtes_folder[39:]
+        r = "/home/fatemeh/Bureau/Stage/resultsNaif/T"+ targtes_folder[39:]
         for path_folder in subfolders_paths:
             run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     
 #run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
 
 def main():
-    run_tests_on_folders("/home/fatemeh/Bureau/Stage/patternsKMP/","/home/fatemeh/Bureau/Stage/targetsKMP/")
+    run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targetss/")
 
 
 #test_defined_pattern_random_target(100, 15, "example_pattern2.txt" ,1)
@@ -746,7 +746,7 @@ for i in range(n):
     print('Time: ', stop - start)
 print("temps moyenne " + str(somme/n))
 '''
-
+'''
 
 (tomatrix, testing_grpim,maxi) = file_to_graphs_present_vertices("/home/fatemeh/Bureau/Stage/algo_naive/example_target2")
 print(tomatrix)
@@ -757,7 +757,7 @@ example_target_1 = to_list_of_matrices(tomatrix,maxi)
 example_pattern_1 = file_to_paths("/home/fatemeh/Bureau/Stage/algo_naive/example_pattern3")
 
 print(KMPSearch(example_pattern_1, example_target_1,testing_grpim))
-
+'''
 '''
 example_target_2 = to_list_of_matrices(file_to_graphs("/home/fatemeh/Bureau/Stage/example_target2.txt"),4)
 #example_pattern_2 = to_list_of_matrices(file_to_graphs("/home/fatemeh/Bureau/Stage/example_pattern2.txt"),4)

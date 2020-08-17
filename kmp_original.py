@@ -35,4 +35,5 @@ t.append(2)
 stop2 = timeit.default_timer()
 somme = (stop2 - start2)
 print(somme)
+print(len("/home/fatemeh/Bureau/Stage/KMP/targetsKMPnew/"))
 

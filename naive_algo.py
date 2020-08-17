@@ -227,10 +227,12 @@ def creat_all_mappings(E,Eprim,t,testing_gprim):
         m = creat_all_mappings_for_single_graph(Eprim[t+i],E[i],testing_gprim[t+i])
         all_mappings.append(m)
         all_mappings = list(itertools.product(*all_mappings))
-        #print("avant clean")
-        #print(all_mappings)
+        print("avant clean")
+        print(all_mappings)
         all_mappings = clean_mappings(all_mappings)
         #print("apres clean")
+        #print(all_mappings)
+
 
         if (all_mappings == [[]]):
             return -1
@@ -344,7 +346,7 @@ def creat_all_mappings_for_single_graph(gprim,g,testing_gprim):
 def naive_algo(E,Eprim,testing_grpim):
     result = []
     for t in range (0,len(Eprim)):
-        print(t)
+       print(t)
         #print(len(E))
         #print(len(Eprim))
         if (t + len(E)) > len(Eprim):

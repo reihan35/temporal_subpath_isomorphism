@@ -96,7 +96,7 @@ def run_tests2(d1, d2,results,n_o_t,fold,all_fold):
                 i = i + 1
                 #print("test " + str(i) + "/" + str(alltests) + ":" + target + "    " + pattern)
                 #print("folder" + str(fold) + "/" + str(all_fold))
-                print "test {} / {} : {}    {}".format(i,alltests,target,pattern)
+                print "test {} / {} : {} {}".format(i,alltests,target,pattern)
                 print "folder {} / {}".format(fold,all_fold)
                 (t,r) = test_defined_pattern_defiend_target(d2,d1,target,pattern,n_o_t)
                 print(r)

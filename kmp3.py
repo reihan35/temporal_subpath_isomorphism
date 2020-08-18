@@ -65,12 +65,12 @@ def generate_random_target_stream(number_of_vertex_per_instance,number_of_instan
     l = []
     for i in range(number_of_instances+1):
         while True:  
-            os.system('arbogen -o ~/Bureau/Stage/arbre'+ str(number_of_vertex_per_instance) + '_' + str(i) +' -otype dot ~/arbogen-master/examples/unarybinary'+str(number_of_vertex_per_instance)+'.spec')
+            os.system('arbogen -o ~/Bureau/Stage/prov/arbre'+ str(number_of_vertex_per_instance) + '_' + str(i) +' -otype dot ~/arbogen-master/examples/unarybinary'+str(number_of_vertex_per_instance)+'.spec')
             f =  'arbre' + str(number_of_vertex_per_instance) + '_' + str(i) + '.dot'
-            if(os.path.exists(os.path.join('/home/fatemeh/Bureau/Stage/', f))):  
+            if(os.path.exists(os.path.join('/home/fatemeh/Bureau/Stage/prov/', f))):  
                break  
-        l.append('/home/fatemeh/Bureau/Stage/'+f)
-    r = make_binary_tree_form_arbogen(l,number_of_instances,"/home/fatemeh/Bureau/Stage/dataset100_"+number_of_vertex_per_instance+"/"+name)
+        l.append('/home/fatemeh/Bureau/Stage/prov/'+f)
+    r = make_binary_tree_form_arbogen(l,number_of_instances,"/home/fatemeh/Bureau/Stage/dataset"+str(number_of_instances)+"_"+str(number_of_vertex_per_instance)+"/"+name)
     print("Done ! target stream created.")
     return r
 
@@ -774,13 +774,13 @@ def run_tests_on_folders(paths_folders,targtes_folders):
 #run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
 
 def main():
-    
+    '''
     for i in range (100):
-        generate_random_target_stream(15,100,"100_30_"+str(i))
-        for filename in glob.glob("/home/fatemeh/Bureau/Stage/arbre*"):
-            os.remove(filename) 
+        generate_random_target_stream(15,1000,"1000_15_"+str(i))
+        for filename in glob.glob("/home/fatemeh/Bureau/Stage/prov/arbre*"):
+            os.remove(filename)'''
         
-    #run_tests_on_folders("/home/fatemeh/Bureau/Stage/KMP/patternsKMPnew/","/home/fatemeh/Bureau/Stage/KMP/targetsKMPnew/")
+    run_tests_on_folders("/home/fatemeh/Bureau/Stage/KMP/patternsKMPnew/","/home/fatemeh/Bureau/Stage/KMP/targetsKMPnew/")
 
 
 

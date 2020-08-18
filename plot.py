@@ -27,13 +27,17 @@ r1 = np.arange(len(bars1))
 r2 = [x + barWidth for x in r1]
  
 # Make the plot
-plt.bar(r1, bars1, color='#7f6d5f', width=barWidth, edgecolor='white', label='var1',yerr = [0.316765488,1.51398837062 ,5.10537391075])
-plt.bar(r2, bars2, color='#557f2d', width=barWidth, edgecolor='white', label='var2', yerr = [1.14742375256,5.12328967415,17.4016412777])
+plt.bar(r1, bars1, color='#7f6d5f', width=barWidth, edgecolor='white', label='KMP based',yerr = [0.316765488,1.51398837062 ,5.10537391075])
+plt.bar(r2, bars2, color='#557f2d', width=barWidth, edgecolor='white', label='cut off', yerr = [1.14742375256,5.12328967415,17.4016412777])
  
 # Add xticks on the middle of the group bars
 plt.xlabel('Datasets with patter 1 - 6 instances', fontweight='bold')
-plt.xticks([r + barWidth for r in range(len(bars1)-1)], ['A', 'B', 'C'])
+plt.ylabel('execution time in sec', fontweight='bold')
+plt.xticks([(r-0.15) + barWidth for r in range(len(bars1))], ['A', 'B', 'C'])
  
 # Create legend & Show graphic
 plt.legend()
-plt.show()
+#plt.show()
+plt.plot()
+plt.savefig('/home/fatemeh/Bureau/Stage/figures/pattern1.png',dpi = 300)
+

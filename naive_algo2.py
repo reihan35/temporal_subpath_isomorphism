@@ -77,6 +77,51 @@ def generate_random_target_stream(number_of_vertex_per_instance,number_of_instan
     print("Done ! target stream created.")
     return r
 
+def run_tests2(d1, d2,results,n_o_t,fold,all_fold):
+    patterns = []
+    targets = []
+    ex_times = []
+    for filename in os.listdir(d1):
+        patterns.append(filename)
+    for filename in os.listdir(d2):
+        targets.append(filename)
+    
+    fi = open(results,"w")
+    alltests = len(targets)*len(patterns)
+    i = 0
+
+    for target in targets:
+        for pattern in patterns:
+            try:
+                i = i + 1
+                #print("test " + str(i) + "/" + str(alltests) + ":" + target + "    " + pattern)
+                #print("folder" + str(fold) + "/" + str(all_fold))
+                print "test {} / {} : {}    {}".format(i,alltests,target,pattern)
+                print "folder {} / {}".format(fold,all_fold)
+                (t,r) = test_defined_pattern_defiend_target(d2,d1,target,pattern,n_o_t)
+                print(r)
+            except Exception as e:
+                #print("ALERTE OUT OF TIME")
+                print(e)
+                #fi.write("target {} {} OUT OF TIME \n".format(target,pattern))
+                #fi.write(target + " " + pattern + " OUT OF TIME " + "\n")            
+            else:
+                ex_times.append(t)
+                #if (r == []):
+                    #res = "no"
+                    #fi.write("target {} {} {} {} \n".format(target,pattern,t,res))
+                    #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + "\n")
+                #else:
+                    #res = "yes"
+                    #(instant,mapi) = r[0]
+                    #fi.write("target {} {} {} {} {} \n".format(target,pattern,t,res,instant))
+                    #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + str(instant) + "\n")
+        gc.collect()
+    a = np.average(ex_times)
+    e = np.std(ex_times)
+    fi.write("target {} {} {} {}\n".format(target,pattern,a,e))
+        
+
 #parses file to list of edges per graph
 def file_to_graphs(file):
     f = open(file, "r")
@@ -613,7 +658,7 @@ def run_tests_on_folders(paths_folders,targtes_folders):
         i = i + 1
         r = "/home/fatemeh/Bureau/Stage/RES/resultsNaif/T"+ targtes_folder[40:]
         for path_folder in subfolders_paths:
-            run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
+            run_tests2(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     
 #run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
 

@@ -1,0 +1,9 @@
+target target_1000inst_50vert pattern_6_inst_5_vert_some_r OUT OF TIME 
+target target_1000inst_50vert pattern_6_inst_5_vert_repeat OUT OF TIME 
+target target_1000inst_50vert pattern_6_inst_5_vert_diff 107.75308919 yes 376 
+target target_1000inst_30vert pattern_6_inst_5_vert_some_r 24.3123421669 yes 1 
+target target_1000inst_30vert pattern_6_inst_5_vert_repeat 12.6648118496 yes 7 
+target target_1000inst_30vert pattern_6_inst_5_vert_diff 106.190980911 no 
+target target_1000inst_15vert pattern_6_inst_5_vert_some_r 32.5438199043 yes 66 
+target target_1000inst_15vert pattern_6_inst_5_vert_repeat 3.20058989525 yes 13 
+target target_1000inst_15vert pattern_6_inst_5_vert_diff 14.5827960968 yes 628 

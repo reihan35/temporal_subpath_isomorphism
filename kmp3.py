@@ -15,6 +15,8 @@ import time
 import timeout_decorator
 import gc
 import resource
+import glob
+
 #from concurrent.futures import TimeoutError
 
 def make_random_path(nbr_vertices,length):
@@ -59,7 +61,7 @@ def make_binary_tree_form_arbogen(trees,n,file_name):
     f2.close()
     return f2
 
-def generate_random_target_stream(number_of_vertex_per_instance,number_of_instances):
+def generate_random_target_stream(number_of_vertex_per_instance,number_of_instances,name):
     l = []
     for i in range(number_of_instances+1):
         while True:  
@@ -68,10 +70,12 @@ def generate_random_target_stream(number_of_vertex_per_instance,number_of_instan
             if(os.path.exists(os.path.join('/home/fatemeh/Bureau/Stage/', f))):  
                break  
         l.append('/home/fatemeh/Bureau/Stage/'+f)
-    r = make_binary_tree_form_arbogen(l,number_of_instances,"/home/fatemeh/Bureau/Stage/targets/target_"+ str(number_of_instances) +"inst_"+ str(number_of_vertex_per_instance)+"vert")
-    os.system('rm -f arbre*')
+    r = make_binary_tree_form_arbogen(l,number_of_instances,"/home/fatemeh/Bureau/Stage/dataset100_"+number_of_vertex_per_instance+"/"+name)
     print("Done ! target stream created.")
     return r
+
+
+
 
 #parses file to list of edges per graph
 def file_to_graphs(file):
@@ -691,6 +695,55 @@ def run_tests(d1, d2,results,n_o_t,fold,all_fold):
                     #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + str(instant) + "\n")
         gc.collect()
 
+
+def run_tests2(d1, d2,results,n_o_t,fold,all_fold):
+    patterns = []
+    targets = []
+    ex_times = []
+    for filename in os.listdir(d1):
+        patterns.append(filename)
+    for filename in os.listdir(d2):
+        targets.append(filename)
+    
+    fi = open(results,"w")
+    alltests = len(targets)*len(patterns)
+    i = 0
+
+    for target in targets:
+        for pattern in patterns:
+            try:
+                i = i + 1
+                #print("test " + str(i) + "/" + str(alltests) + ":" + target + "    " + pattern)
+                #print("folder" + str(fold) + "/" + str(all_fold))
+                print "test {} / {} : {}    {}".format(i,alltests,target,pattern)
+                print "folder {} / {}".format(fold,all_fold)
+                (t,r) = test_defined_pattern_defiend_target(d2,d1,target,pattern,n_o_t)
+                print(r)
+            except Exception as e:
+                #print("ALERTE OUT OF TIME")
+                print(e)
+                #fi.write("target {} {} OUT OF TIME \n".format(target,pattern))
+                #fi.write(target + " " + pattern + " OUT OF TIME " + "\n")            
+            else:
+                ex_times.append(t)
+                #if (r == []):
+                    #res = "no"
+                    #fi.write("target {} {} {} {} \n".format(target,pattern,t,res))
+                    #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + "\n")
+                #else:
+                    #res = "yes"
+                    #(instant,mapi) = r[0]
+                    #fi.write("target {} {} {} {} {} \n".format(target,pattern,t,res,instant))
+                    #fi.write(target + " " + pattern + " " + str(t) + " " + res + " " + str(instant) + "\n")
+    gc.collect()
+    a = np.average(ex_times)
+    e = np.std(ex_times)
+    fi.write("target {} {} {} {}\n".format(target,pattern,a,e))
+        
+
+
+            
+
             
                 
             
@@ -716,12 +769,19 @@ def run_tests_on_folders(paths_folders,targtes_folders):
         i = i + 1
         r = "/home/fatemeh/Bureau/Stage/RES/results_KMP_new/T"+ targtes_folder[45:]
         for path_folder in subfolders_paths:
-            run_tests(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
+            run_tests2(path_folder,targtes_folder,r,1,i,len(subfolders_targets))
     
 #run_tests_on_folders("/home/fatemeh/Bureau/Stage/patterns/","/home/fatemeh/Bureau/Stage/targets/")
 
 def main():
-    run_tests_on_folders("/home/fatemeh/Bureau/Stage/KMP/patternsKMPnew/","/home/fatemeh/Bureau/Stage/KMP/targetsKMPnew/")
+    
+    for i in range (100):
+        generate_random_target_stream(15,100,"100_30_"+str(i))
+        for filename in glob.glob("/home/fatemeh/Bureau/Stage/arbre*"):
+            os.remove(filename) 
+        
+    #run_tests_on_folders("/home/fatemeh/Bureau/Stage/KMP/patternsKMPnew/","/home/fatemeh/Bureau/Stage/KMP/targetsKMPnew/")
+
 
 
 #test_defined_pattern_random_target(100, 15, "example_pattern2.txt" ,1)

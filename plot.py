@@ -31,13 +31,13 @@ plt.bar(r1, bars1, color='#7f6d5f', width=barWidth, edgecolor='white', label='KM
 plt.bar(r2, bars2, color='#557f2d', width=barWidth, edgecolor='white', label='cut off', yerr = [1.14742375256,5.12328967415,17.4016412777])
  
 # Add xticks on the middle of the group bars
-plt.xlabel('Datasets with patter 1 - 6 instances', fontweight='bold')
+#plt.xlabel('Datasets with patter 1 - 6 instances', fontweight='bold')
 plt.ylabel('execution time in sec', fontweight='bold')
 plt.xticks([(r-0.15) + barWidth for r in range(len(bars1))], ['A', 'B', 'C'])
  
 # Create legend & Show graphic
-plt.legend()
 #plt.show()
+plt.legend()
 plt.plot()
-plt.savefig('/home/fatemeh/Bureau/Stage/figures/pattern1.png',dpi = 300)
+plt.savefig('/home/fatemeh/Bureau/Stage/figures/pattern1_noleg.png',dpi = 300)
 

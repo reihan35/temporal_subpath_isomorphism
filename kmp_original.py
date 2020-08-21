@@ -8,7 +8,7 @@ def computeLPSArray(pat, M, lps):
   
     # the loop calculates lps[i] for i = 1 to M-1 
     while i < M: 
-        if pat[i]== pat[len]: 
+        if pat[i]== pat[len] : 
             len += 1
             lps[i] = len
             i += 1
@@ -24,7 +24,7 @@ def computeLPSArray(pat, M, lps):
                 lps[i] = 0
                 i += 1
 
-pat = "abab"
+pat = "abca"
 M = len(pat) 
 lps = [0]*M 
 computeLPSArray(pat, M, lps)

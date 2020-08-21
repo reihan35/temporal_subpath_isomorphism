@@ -462,8 +462,9 @@ def computeLPSArray(E, T, lps):
   
     # the loop calculates lps[i] for i = 1 to M-1 
     while i < T: 
-        if pathequal(E[i],E[leni]): 
-        #if len(E[i])==len(E[leni]): 
+        #if pathequal(E[i],E[leni]): 
+        #if len(E[i]) == len(E[leni]) or len(E[i]) < len(E[leni]):
+        if len(E[i])==len(E[leni]): 
             leni += 1
             lps[i] = leni
             i += 1
@@ -496,6 +497,7 @@ def KMPSearch(E, Eprim,testing_gprim):
 
     # Preprocess the pattern (calculate lps[] array) 
     computeLPSArray(E, M, lps) 
+
 
     #print("Tableau PI" + str(lps))
     #print("all_mappings" + str(all_mappings))
@@ -547,8 +549,9 @@ def KMPSearch(E, Eprim,testing_gprim):
            # print(j)
          
         if j == M:  
-            #print("I ENTER HERE")
+            print("I ENTER HERE")
             result.append((((i-j+1)),all_mappings[0]))
+            print(result)
             return result
            # print "Found pattern at index " + str(i-j) 
             j = lps[j-1]
@@ -565,6 +568,8 @@ def KMPSearch(E, Eprim,testing_gprim):
                 j = lps[j - 1]
                 #all_mappings = copy.deepcopy(all_mappings_bef)
                 if (j>0):
+                    print("SALUT")
+                    print(copies.get(j))
                     all_mappings = copy.deepcopy(copies.get(j))
                 else:
                     all_mappings = []
